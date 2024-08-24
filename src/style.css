@@ -1,0 +1,194 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F3F5FC;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  height: 96px;
+}
+
+.header-logo {
+  max-height: 48px;
+  margin-left: 16px;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Sections */
+.encrypt-section {
+  background-color: #F3F5FC;
+  padding: 20px;
+  height: 65vh;
+}
+
+#inputMessage {
+  height: 70%;
+  border: none;
+  background-color: #F3F5FC;
+}
+
+.output-section {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 32px;
+  margin: auto 24px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.output-textarea {
+  border: none;
+  font-size: 24px;
+  margin-bottom: 24px;
+  height: auto;
+}
+
+.textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 32px;
+  height: 100vh;
+}
+
+#inputMessage::placeholder {
+  color: #0A3871;;
+}
+
+.textarea:focus {
+  color: #0A3871;
+  outline: none;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.button {
+  background-color: #0A3871;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 55px;
+}
+
+#decryptBtn, .button--copy {
+  border: 1px solid #0A3871;
+  background-color: #fff;
+  color: #0A3871;
+}
+
+.instructions-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.instructions {
+  font-size: 12px;
+  color: #67808E;
+  margin-left: 5px;
+}
+
+.icon {
+  height:20px;
+}
+
+.modal {
+  display: block;
+}
+
+.modal-content {
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+}
+
+.modal-content h3 {
+  font-size: 24px;
+}
+
+#output-div {
+  display: none;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  /* Styles for tablets */
+  .encrypt-section {
+    padding: 40px;
+    height: 60vh;
+  }
+
+  .textarea {
+    font-size: 28px;
+    height: 50vh;
+  }
+
+  .button-group {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .button {
+    width: 48%;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Styles for desktops */
+  .main-content {
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100vh;
+    margin: auto 20px;
+  }
+
+  .encrypt-section, .output-section {
+    height: 80vh;
+  }
+
+  .button-group {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .button {
+    flex: 1;
+    padding: 16px;
+    font-size: 18px;
+    height: auto;
+  }
+
+  .button--copy {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
