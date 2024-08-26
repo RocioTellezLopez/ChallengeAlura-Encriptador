@@ -1,7 +1,21 @@
-const textArea = document.getElementById("inputMessage");
-const mensaje = document.getElementById("outputMessage");
+const inputMessage = document.getElementById("inputMessage");
+const outputMessage = document.getElementById("outputMessage");
 const modal = document.getElementById("modal");
-const outputDiv = document.getElementById("output-div")
+const outputDiv = document.getElementById("output-div");
+
+function isValidInput(string) {
+  return /^[a-z\s]*$/.test(string);
+}
+
+function autoResize(textArea) {
+  if (window.innerWidth < 1024) {
+    textArea.style.height = "auto";
+    textArea.style.height = textArea.scrollHeight + "px";
+  } else {
+    textArea.style.height = "700px";
+    textArea.style.overflow = "auto";
+  }
+}
 
 function showModal() {
   modal.style.display = "block"; // Mostrar el modal
@@ -9,62 +23,78 @@ function showModal() {
 
 function hideModal() {
   modal.style.display = "none"; // Ocultar el modal
-  outputDiv.style.display = "block"
+  outputDiv.style.display = "block";
 }
 
 function btnEncriptado() {
-  const textEncriptado = encriptar(textArea.value)
-
-  if (textArea.value === "") {
-    showModal()
+  if (!isValidInput(inputMessage.value)) {
+    alert(
+      "Solo se permiten letras minúsculas sin acentos ni caracteres especiales."
+    );
+    inputMessage.value = ""
   } else {
-    hideModal()
-    mensaje.value = textEncriptado;
-    console.log(textEncriptado);
-    mensaje.style.display = "block"
-    
+    const textEncriptado = encriptar(inputMessage.value);
+
+    if (inputMessage.value === "") {
+      showModal();
+    } else {
+      hideModal();
+      outputMessage.value = textEncriptado;
+      autoResize(outputMessage);
+      outputMessage.style.display = "block";
+    }
   }
 }
 
 function btnDesencriptado() {
-  const textDesencriptado = desencriptar(textArea.value)
-
-  if (textArea.value === "") {
-    mensaje.value = "Ningún mensaje fue encontrado"; 
+  if (!isValidInput(inputMessage.value)) {
+    alert(
+      "Solo se permiten letras minúsculas sin acentos ni caracteres especiales."
+    );
+    inputMessage.value = ""
   } else {
-    mensaje.value = textDesencriptado;
-  }
+    const textDesencriptado = desencriptar(inputMessage.value);
 
-  
+    if (inputMessage.value === "") {
+      outputMessage.value = "Ningún mensaje fue encontrado";
+    } else {
+      outputMessage.value = textDesencriptado;
+    }
+  }
 }
 
-function encriptar (string) {
-  let matrizCodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]]
-  string = string.toLowerCase()
+function encriptar(string) {
+  let matrizCodigo = [
+    ["e", "enter"],
+    ["i", "imes"],
+    ["a", "ai"],
+    ["o", "ober"],
+    ["u", "ufat"],
+  ];
+  string = string.toLowerCase();
 
   for (let i = 0; i < matrizCodigo.length; i++) {
-    if(string.includes(matrizCodigo[i][0])){
-      string = string.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1])
+    if (string.includes(matrizCodigo[i][0])) {
+      string = string.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
     }
-    
   }
-
-  return string
-
+  return string;
 }
 
-
-function desencriptar (string) {
-  let matrizCodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]]
-  string = string.toLowerCase()
+function desencriptar(string) {
+  let matrizCodigo = [
+    ["e", "enter"],
+    ["i", "imes"],
+    ["a", "ai"],
+    ["o", "ober"],
+    ["u", "ufat"],
+  ];
+  string = string.toLowerCase();
 
   for (let i = 0; i < matrizCodigo.length; i++) {
-    if(string.includes(matrizCodigo[i][1])){
-      string = string.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0])
+    if (string.includes(matrizCodigo[i][1])) {
+      string = string.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0]);
     }
-    
   }
-
-  return string
-
+  return string;
 }

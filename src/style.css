@@ -9,7 +9,6 @@ body {
   background-color: #F3F5FC;
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 .header {
@@ -27,7 +26,7 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  width: 100vw;
 }
 
 /* Sections */
@@ -35,6 +34,7 @@ body {
   background-color: #F3F5FC;
   padding: 20px;
   height: 65vh;
+  margin-bottom: 24px;
 }
 
 #inputMessage {
@@ -49,9 +49,10 @@ body {
   border-radius: 32px;
   margin: auto 24px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin-bottom: 24px;
 }
 
-.output-textarea {
+#outputMessage {
   border: none;
   font-size: 24px;
   margin-bottom: 24px;
@@ -62,7 +63,8 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 32px;
-  height: 100vh;
+  resize: none;
+  overflow: hidden;
 }
 
 #inputMessage::placeholder {
@@ -93,10 +95,18 @@ body {
   height: 55px;
 }
 
-#decryptBtn, .button--copy {
+#decryptBtn, .button-copy {
   border: 1px solid #0A3871;
-  background-color: #fff;
+  background-color: #F3F5FC;
   color: #0A3871;
+}
+
+.button:hover {
+  background-color: #356EA9;
+}
+
+.button-copy {
+  background-color: #fff;
 }
 
 .instructions-div {
@@ -139,16 +149,13 @@ body {
   display: none;
 }
 
-/* Responsive Styles */
-@media (min-width: 768px) {
-  /* Styles for tablets */
-  .encrypt-section {
-    padding: 40px;
-    height: 60vh;
-  }
+.modal-img {
+  display: none;
+}
 
-  .textarea {
-    font-size: 28px;
+/* Responsive Styles for tablets */
+@media (min-width: 768px) {
+  #inputMessage {
     height: 50vh;
   }
 
@@ -160,19 +167,54 @@ body {
   .button {
     width: 48%;
   }
-}
 
-@media (min-width: 1024px) {
-  /* Styles for desktops */
-  .main-content {
-    flex-direction: row;
-    justify-content: space-around;
-    height: 100vh;
-    margin: auto 20px;
+  .button-copy {
+    width: 100%;
   }
 
-  .encrypt-section, .output-section {
-    height: 80vh;
+  .output-section {
+    margin-bottom: 50px;
+  }
+
+  .modal-img {
+    display: none;
+  }
+}
+
+/* Styles for desktops */
+@media (min-width: 1024px) {
+
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main-content {
+    flex-direction: row;
+    margin-left: 24px;
+    height: 100vh;
+
+  }
+
+  .encrypt-section{
+    width: 70%;
+    margin-top: 100px;
+  }
+
+  #inputMessage {
+    height: 100%;
+  }
+
+  .output-section {
+    margin: 24px;
+    width: 400px;
+  }
+
+  .outputMessage {
+    border: none;
+    font-size: 24px;
+    height: 700px;
+    overflow-y: auto;
   }
 
   .button-group {
@@ -180,15 +222,18 @@ body {
     justify-content: space-between;
   }
 
-  .button {
-    flex: 1;
-    padding: 16px;
-    font-size: 18px;
-    height: auto;
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 
-  .button--copy {
-    width: 100%;
-    margin-top: 16px;
+  .modal-img {
+    display: block;
+  }
+
+  .modal-img img {
+    height: 300px;
   }
 }
