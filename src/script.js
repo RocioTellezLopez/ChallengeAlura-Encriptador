@@ -2,17 +2,31 @@ const inputMessage = document.getElementById("inputMessage");
 const outputMessage = document.getElementById("outputMessage");
 const modal = document.getElementById("modal");
 const outputDiv = document.getElementById("output-div");
+const copyButton = document.getElementById("copyButton");
 
 function isValidInput(string) {
   return /^[a-z\s]*$/.test(string);
 }
+
+copyButton.addEventListener("click", function () {
+  const textToCopy = outputMessage.value;
+
+  navigator.clipboard
+    .writeText(textToCopy)
+    .then(() => {
+      alert("Mensaje copiado en el portapapeles");
+    })
+    .catch(() => {
+      alert("No se pudo copiar el mensaje");
+    });
+});
 
 function autoResize(textArea) {
   if (window.innerWidth < 1024) {
     textArea.style.height = "auto";
     textArea.style.height = textArea.scrollHeight + "px";
   } else {
-    textArea.style.height = "700px";
+    textArea.style.height = "75vh";
     textArea.style.overflow = "auto";
   }
 }
@@ -31,7 +45,7 @@ function btnEncriptado() {
     alert(
       "Solo se permiten letras minúsculas sin acentos ni caracteres especiales."
     );
-    inputMessage.value = ""
+    inputMessage.value = "";
   } else {
     const textEncriptado = encriptar(inputMessage.value);
 
@@ -51,7 +65,7 @@ function btnDesencriptado() {
     alert(
       "Solo se permiten letras minúsculas sin acentos ni caracteres especiales."
     );
-    inputMessage.value = ""
+    inputMessage.value = "";
   } else {
     const textDesencriptado = desencriptar(inputMessage.value);
 
